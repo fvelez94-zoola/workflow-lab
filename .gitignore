@@ -1,37 +1,79 @@
-HELP.md
-.gradle
+# =============================================================================
+# Workflow Lab .gitignore
+# Sections: Gradle, IDEs, OS, logs, secrets, local databases, local agent files
+# =============================================================================
+
+### Gradle ###
+.gradle/
+.gradletasknamecache
+# Build output, including the OpenAPI generated sources (build/generated/openapi).
+# The generated code is never committed.
 build/
+# Keep the wrapper jar: it is how everyone gets the right Gradle version.
 !gradle/wrapper/gradle-wrapper.jar
+# A package may legitimately be called "build"; never ignore source directories.
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### STS ###
-.apt_generated
+### IntelliJ IDEA ###
+# Ignore everything inside .idea EXCEPT the shared run configurations, so that
+# opening the project gives a ready-to-use "Play" button. IntelliJ rewrites the
+# other files (gradle.xml, misc.xml, ...) on every sync and they contain
+# machine-specific paths, so sharing them only creates noise.
+.idea/*
+!.idea/runConfigurations/
+*.iml
+*.iws
+*.ipr
+out/
+# IMPORTANT: this project has packages named "out" (domain.model.port.out).
+# These exceptions stop the "out/" rule above from hiding that source code.
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse and VS Code ###
+.vscode/
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+.settings/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+### Operating system ###
+.DS_Store
+Thumbs.db
+*~
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+### Logs and temporary files ###
+*.log
+logs/
+*.tmp
+*.swp
+*.bak
 
-### VS Code ###
-.vscode/
+### Secrets and local configuration ###
+# Never commit credentials. Share a template instead (for example .env.example).
+.env
+.env.*
+!.env.example
+application-local.yaml
+application-local.yml
+application-local.properties
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+### Local databases ###
+# The app uses in-memory H2; these only appear if someone switches to a file database.
+*.mv.db
+*.trace.db
+*.lock.db
+*.h2.db
+
+### Local files of coding agents ###
+# AGENTS.md and CLAUDE.md are shared; personal overrides are not.
+.claude/settings.local.json
+CLAUDE.local.md

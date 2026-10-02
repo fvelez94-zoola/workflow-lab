@@ -6,6 +6,12 @@ pluginManagement {
     }
 }
 
+plugins {
+    // Downloads the Java 25 toolchain automatically when it is not installed, so the project
+    // builds (and the IDE "Play" button works) on a machine that only has an older JDK.
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
 rootProject.name = 'workflow-lab'
 
 // Layer 1 - domain (business rules; Spring limited to the @Service/@Component stereotypes)

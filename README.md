@@ -224,6 +224,19 @@ Generator (spec-first, interfaces and DTOs only), ArchUnit, JUnit 5 and Mockito.
 ./gradlew :applications:app-service:bootRun
 ```
 
+### From IntelliJ IDEA
+
+Open the project folder and let IntelliJ import the Gradle build. The shared run configurations in
+[`.idea/runConfigurations`](.idea/runConfigurations) appear in the toolbar:
+
+| Configuration | What it does |
+|---|---|
+| **Workflow Lab** | Press **Play** (or Debug) to start the application: it runs `:applications:app-service:bootRun` |
+| **Build and test** | Runs `clean build`: compiles every module and runs the whole test suite |
+
+The Java 25 toolchain is resolved by Gradle: it uses a JDK 25 found on the machine (SDKMAN, Homebrew, ...) and
+downloads one automatically if none is available. IntelliJ itself only needs a JDK 17 or newer to run Gradle.
+
 A sample workflow is created at start-up (its id is printed in the log). The H2 console is available at
 `http://localhost:8080/h2-console` with JDBC URL `jdbc:h2:mem:workflowlab`.
 

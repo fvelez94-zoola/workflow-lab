@@ -56,6 +56,9 @@ workflows) is deliberately small: the architecture is the product, the business 
 
 H2 console: `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:mem:workflowlab`).
 
+IntelliJ IDEA: the shared run configurations in `.idea/runConfigurations` give a ready **Workflow Lab** (Play)
+and **Build and test**. They are the only part of `.idea/` that is committed.
+
 ### Module map
 
 | Module (Gradle path) | Layer | Role |
@@ -631,6 +634,17 @@ without having run it.
 
 - Adapters are **`runtimeOnly`** in `app-service`. Application code must not import them.
 - Do not commit `build/`, `.gradle/` or generated sources.
+- **Git hygiene is defined by [`.gitignore`](.gitignore)**, organized in commented sections. Rules to keep:
+  - Inside `.idea/` only `runConfigurations/` is shared. Do not commit `gradle.xml`, `misc.xml`, `workspace.xml`
+    or similar: IntelliJ rewrites them on every sync and they contain machine-specific paths.
+  - The `out/` rule is neutralized for source code (`!**/src/main/**/out/`) because `domain.model.port.out` is a
+    real package. Never remove those exceptions.
+  - Secrets and local overrides (`.env*`, `application-local.*`, keys, `.claude/settings.local.json`) are
+    ignored. Share a template (for example `.env.example`) instead of the real file.
+- **JDK**: the build needs Java 25 through a Gradle toolchain. `settings.gradle` applies the `foojay` resolver so
+  Gradle downloads it when it is missing. Do not hard-code a JDK path in the build or in committed IDE files.
+- **Run configurations**: when a module path or the main task changes, update the files in
+  `.idea/runConfigurations` in the same change.
 
 ---
 
@@ -739,6 +753,7 @@ Decisions already taken. Do not reverse them without an explicit decision, and r
 | 11 | **Documentation in English; diagrams as SVG in `docs/images`** | Audience and tooling (previews do not render Mermaid) | See section 10 |
 | 12 | **`shouldXYZ` test naming** | Tests read as specifications | Applies to every new or rewritten test |
 | 13 | **ArchUnit on top of the module structure** | Gradle only controls dependencies between whole modules; it cannot express rules about annotations, naming, packages inside a module, or "stereotypes only" (README, "Why ArchUnit?") | Rules live only in `ArchitectureTest`, are never weakened to get a green build, and each new rule must be proven to bite |
+| 14 | **Share only IntelliJ run configurations; Gradle resolves the JDK** | "Open and press Play" without committing files the IDE rewrites constantly; no machine-specific JDK paths in the repo | `.gitignore` allows only `.idea/runConfigurations/`; `settings.gradle` applies the `foojay` toolchain resolver |
 
 ---
 
