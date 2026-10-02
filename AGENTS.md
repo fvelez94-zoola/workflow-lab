@@ -772,8 +772,9 @@ Decisions already taken. Do not reverse them without an explicit decision, and r
 ### Commits and pull requests
 
 - Write commit messages in English, in the imperative mood, with a short subject and a body that explains **why**.
-- **Never add a `Co-Authored-By` trailer or any other AI attribution** to a commit message. The author of
-  every commit is the repository owner, nobody else.
+- **Never add AI attribution of any kind**: no `Co-Authored-By` trailer in a commit message and no "generated
+  with ..." line in a pull request description, a file or a comment. The author of every commit is the repository
+  owner, nobody else.
 - Do not rewrite or force-push published history unless the owner explicitly asks for it.
 
 ### While changing
