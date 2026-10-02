@@ -769,6 +769,13 @@ Decisions already taken. Do not reverse them without an explicit decision, and r
 3. For a non-trivial change (new module, new rule, new dependency, change of a decision), state the plan and
    the open decisions **before** editing, and record the outcome in the decision log.
 
+### Commits and pull requests
+
+- Write commit messages in English, in the imperative mood, with a short subject and a body that explains **why**.
+- **Never add a `Co-Authored-By` trailer or any other AI attribution** to a commit message. The author of
+  every commit is the repository owner, nobody else.
+- Do not rewrite or force-push published history unless the owner explicitly asks for it.
+
 ### While changing
 
 - Put each class in the right layer using section 2. When a class grows a second responsibility, extract it
