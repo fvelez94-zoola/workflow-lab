@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: workflow-lab
+  datasource:
+    url: jdbc:h2:mem:workflowlab;DB_CLOSE_DELAY=-1
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+workflowlab:
+  sample-data:
+    enabled: true

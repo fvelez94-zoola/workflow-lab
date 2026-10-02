@@ -1,0 +1,19 @@
+# Path item. Every operation here belongs to the tag it declares.
+parameters:
+  - $ref: ../parameters/WorkflowId.yaml
+get:
+  tags:
+    - Analysis
+  operationId: getWorkflowAnalysis
+  summary: Estimate the duration of a workflow and find its critical path
+  responses:
+    '200':
+      description: The analysis
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/analysis/WorkflowAnalysisResponse.yaml
+    '404':
+      $ref: ../responses/NotFound.yaml
+    '422':
+      $ref: ../responses/Unprocessable.yaml

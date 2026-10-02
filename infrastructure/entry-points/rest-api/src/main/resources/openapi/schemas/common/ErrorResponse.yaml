@@ -1,0 +1,15 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - code
+  - message
+properties:
+  code:
+    type: string
+    example: WORKFLOW_NOT_FOUND
+  message:
+    type: string
+  failures:
+    type: array
+    items:
+      $ref: ErrorFailure.yaml

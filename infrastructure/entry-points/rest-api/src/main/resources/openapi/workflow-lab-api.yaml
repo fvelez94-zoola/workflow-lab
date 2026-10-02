@@ -1,0 +1,33 @@
+# Root of the contract. It only lists WHERE each path lives; see paths/ and schemas/.
+openapi: 3.0.3
+info:
+  title: Mini Workflow Lab API
+  description: |
+    Showcase API for a Clean Architecture project.
+    A workflow is a graph of typed nodes. Publishing validates the graph; converting a published
+    workflow produces an experiment (an ordered list of instructions).
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Workflows
+    description: Use cases 1 and 2 - manage and publish workflows
+  - name: Experiments
+    description: Use case 3 - convert a published workflow into an experiment
+  - name: Analysis
+    description: Use case 4 - estimate duration and critical path of a workflow
+  - name: Protocols
+    description: Use case 5 - export the instructions of a published workflow as a document
+paths:
+  /workflows:
+    $ref: ./paths/workflows.yaml
+  /workflows/{workflowId}:
+    $ref: ./paths/workflow.yaml
+  /workflows/{workflowId}/publish:
+    $ref: ./paths/workflow-publish.yaml
+  /workflows/{workflowId}/experiments:
+    $ref: ./paths/workflow-experiments.yaml
+  /workflows/{workflowId}/analysis:
+    $ref: ./paths/workflow-analysis.yaml
+  /workflows/{workflowId}/protocol:
+    $ref: ./paths/workflow-protocol.yaml

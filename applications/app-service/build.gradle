@@ -1,0 +1,22 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+description = 'Assembly: the only module that knows every other module and the only one with a main().'
+
+dependencies {
+    implementation project(':domain:model')
+    implementation project(':domain:usecase')
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Adapters are discovered by Spring at runtime; the assembly code never imports their classes.
+    runtimeOnly project(':infrastructure:entry-points:rest-api')
+    runtimeOnly project(':infrastructure:driven-adapters:jpa-repository')
+    runtimeOnly project(':infrastructure:driven-adapters:lab-runner-log')
+    runtimeOnly project(':infrastructure:driven-adapters:protocol-document')
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation "com.tngtech.archunit:archunit-junit5:${archUnitVersion}"
+}

@@ -1,0 +1,28 @@
+# Path item. Every operation here belongs to the tag it declares.
+parameters:
+  - $ref: ../parameters/WorkflowId.yaml
+get:
+  tags:
+    - Protocols
+  operationId: exportProtocol
+  summary: Download the ordered instructions of a published workflow as a document
+  parameters:
+    - name: format
+      in: query
+      required: false
+      schema:
+        $ref: ../schemas/protocol/ProtocolFormat.yaml
+  responses:
+    '200':
+      description: The protocol document
+      content:
+        text/markdown:
+          schema:
+            type: string
+        text/csv:
+          schema:
+            type: string
+    '404':
+      $ref: ../responses/NotFound.yaml
+    '409':
+      $ref: ../responses/Conflict.yaml

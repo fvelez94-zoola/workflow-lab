@@ -1,0 +1,7 @@
+description = 'Domain model: entities, value objects, business rules and ports. Spring is limited to the @Component stereotype on three stateless domain collaborators.'
+
+dependencies {
+    // Only for the @Component stereotype on NodeDurationPolicy, CriticalPathCalculator and WorkflowAnalyzer.
+    // Everything else in this module is plain Java.
+    implementation 'org.springframework:spring-context'
+}

@@ -1,0 +1,19 @@
+# Path item. Every operation here belongs to the tag it declares.
+parameters:
+  - $ref: ../parameters/WorkflowId.yaml
+post:
+  tags:
+    - Experiments
+  operationId: convertWorkflowToExperiment
+  summary: Convert a published workflow into an experiment and submit it
+  responses:
+    '201':
+      description: Experiment created and submitted
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/experiment/ExperimentResponse.yaml
+    '404':
+      $ref: ../responses/NotFound.yaml
+    '409':
+      $ref: ../responses/Conflict.yaml

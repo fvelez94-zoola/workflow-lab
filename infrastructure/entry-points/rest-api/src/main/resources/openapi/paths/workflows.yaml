@@ -1,0 +1,37 @@
+# Path item. Every operation here belongs to the tag it declares.
+get:
+  tags:
+    - Workflows
+  operationId: listWorkflows
+  summary: List all workflows
+  responses:
+    '200':
+      description: All workflows
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../schemas/workflow/WorkflowResponse.yaml
+post:
+  tags:
+    - Workflows
+  operationId: createWorkflow
+  summary: Create a workflow (always starts as DRAFT)
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/workflow/WorkflowRequest.yaml
+  responses:
+    '201':
+      description: Workflow created
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/workflow/WorkflowResponse.yaml
+    '400':
+      $ref: ../responses/BadRequest.yaml
+    '422':
+      $ref: ../responses/Unprocessable.yaml

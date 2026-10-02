@@ -1,0 +1,7 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: string
+enum:
+  - MIX
+  - SET_TEMPERATURE
+  - WAIT
+  - MEASURE

@@ -1,0 +1,6 @@
+# Reusable error response.
+description: Workflow not found
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/common/ErrorResponse.yaml

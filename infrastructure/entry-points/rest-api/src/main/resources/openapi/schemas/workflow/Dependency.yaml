@@ -1,0 +1,13 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+description: The node `from` must finish before the node `to` starts.
+required:
+  - from
+  - to
+properties:
+  from:
+    type: string
+    example: mix-1
+  to:
+    type: string
+    example: incubate-1

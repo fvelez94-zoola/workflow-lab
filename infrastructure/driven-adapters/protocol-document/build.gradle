@@ -1,0 +1,6 @@
+description = 'Driven adapter: writes protocol documents (Markdown, CSV). Owns the formatting helpers the domain must never see.'
+
+dependencies {
+    implementation project(':domain:model')
+    implementation 'org.springframework:spring-context'
+}

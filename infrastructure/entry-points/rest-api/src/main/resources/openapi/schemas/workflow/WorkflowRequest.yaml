@@ -1,0 +1,20 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - name
+  - nodes
+  - dependencies
+properties:
+  name:
+    type: string
+    example: Absorbance assay
+  description:
+    type: string
+  nodes:
+    type: array
+    items:
+      $ref: Node.yaml
+  dependencies:
+    type: array
+    items:
+      $ref: Dependency.yaml

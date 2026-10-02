@@ -1,0 +1,26 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - workflowId
+  - nodeCount
+  - estimatedDurationSeconds
+  - estimatedDuration
+  - criticalPath
+properties:
+  workflowId:
+    type: string
+    format: uuid
+  nodeCount:
+    type: integer
+  estimatedDurationSeconds:
+    type: integer
+    format: int64
+    description: Length of the critical path, in seconds
+  estimatedDuration:
+    type: string
+    description: Same duration, for humans
+    example: 47m 30s
+  criticalPath:
+    type: array
+    items:
+      $ref: CriticalPathStep.yaml

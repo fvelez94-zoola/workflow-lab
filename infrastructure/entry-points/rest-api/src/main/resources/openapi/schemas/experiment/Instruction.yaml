@@ -1,0 +1,17 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - sequence
+  - sourceNodeId
+  - type
+  - description
+properties:
+  sequence:
+    type: integer
+    description: Position in the execution order, starting at 1
+  sourceNodeId:
+    type: string
+  type:
+    $ref: InstructionType.yaml
+  description:
+    type: string

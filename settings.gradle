@@ -1,0 +1,22 @@
+pluginManagement {
+    plugins {
+        id 'org.springframework.boot' version "${springBootVersion}"
+        id 'io.spring.dependency-management' version '1.1.7'
+        id 'org.openapi.generator' version "${openApiGeneratorVersion}"
+    }
+}
+
+rootProject.name = 'workflow-lab'
+
+// Layer 1 - domain (business rules; Spring limited to the @Service/@Component stereotypes)
+include ':domain:model'
+include ':domain:usecase'
+
+// Layer 2 - infrastructure (technology details)
+include ':infrastructure:entry-points:rest-api'
+include ':infrastructure:driven-adapters:jpa-repository'
+include ':infrastructure:driven-adapters:lab-runner-log'
+include ':infrastructure:driven-adapters:protocol-document'
+
+// Layer 3 - application (assembly)
+include ':applications:app-service'

@@ -1,0 +1,6 @@
+# Reusable error response.
+description: The workflow is not in a state that allows this operation
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/common/ErrorResponse.yaml

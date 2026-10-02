@@ -1,0 +1,33 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+description: |
+  A workflow step. Which parameters apply depends on `type`:
+  MIX needs speedRpm and durationSeconds; INCUBATE needs temperatureCelsius and durationMinutes;
+  MEASURE needs measurementType.
+required:
+  - id
+  - name
+  - type
+properties:
+  id:
+    type: string
+    example: mix-1
+  name:
+    type: string
+    example: Mix reagents
+  type:
+    $ref: NodeType.yaml
+  speedRpm:
+    type: integer
+    example: 300
+  durationSeconds:
+    type: integer
+    example: 30
+  temperatureCelsius:
+    type: integer
+    example: 37
+  durationMinutes:
+    type: integer
+    example: 45
+  measurementType:
+    $ref: MeasurementType.yaml

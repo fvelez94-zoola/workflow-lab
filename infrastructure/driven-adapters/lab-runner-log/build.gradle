@@ -1,0 +1,7 @@
+description = 'Driven adapter: implements RunSubmissionGateway by logging. Swap it for a real lab client without touching the domain.'
+
+dependencies {
+    implementation project(':domain:model')
+    implementation 'org.springframework:spring-context'
+    implementation 'org.slf4j:slf4j-api'
+}

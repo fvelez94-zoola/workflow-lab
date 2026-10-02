@@ -1,0 +1,26 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - id
+  - name
+  - status
+  - nodes
+  - dependencies
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+  description:
+    type: string
+  status:
+    $ref: WorkflowStatus.yaml
+  nodes:
+    type: array
+    items:
+      $ref: Node.yaml
+  dependencies:
+    type: array
+    items:
+      $ref: Dependency.yaml

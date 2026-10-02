@@ -1,0 +1,6 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: string
+enum:
+  - MARKDOWN
+  - CSV
+default: MARKDOWN

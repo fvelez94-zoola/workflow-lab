@@ -1,0 +1,10 @@
+# DTO schema. The generated class name comes from this file name + the 'Dto' suffix.
+type: object
+required:
+  - code
+  - message
+properties:
+  code:
+    type: string
+  message:
+    type: string

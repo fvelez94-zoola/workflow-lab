@@ -1,0 +1,49 @@
+plugins {
+    id 'org.openapi.generator'
+}
+
+description = 'Entry point: REST API generated from the OpenAPI contract. Depends only on the domain model (input ports).'
+
+dependencies {
+    implementation project(':domain:model')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// Spec-first: the YAML is the source of truth; interfaces and DTOs are generated into build/ (never committed).
+openApiGenerate {
+    generatorName = 'spring'
+    inputSpec = "$projectDir/src/main/resources/openapi/workflow-lab-api.yaml".toString()
+    outputDir = layout.buildDirectory.dir('generated/openapi').get().asFile.path
+    apiPackage = 'com.hexagonal.workflowlab.infrastructure.entrypoint.rest.generated.api'
+    modelPackage = 'com.hexagonal.workflowlab.infrastructure.entrypoint.rest.generated.model'
+    modelNameSuffix = 'Dto'
+    generateApiTests = false
+    generateModelTests = false
+    configOptions = [
+            interfaceOnly          : 'true',
+            useSpringBoot3         : 'true',
+            useTags                : 'true',
+            skipDefaultInterface   : 'true',
+            openApiNullable        : 'false',
+            documentationProvider  : 'none',
+            annotationLibrary      : 'none',
+            useBeanValidation      : 'true',
+            dateLibrary            : 'java8',
+            hideGenerationTimestamp: 'true'
+    ]
+}
+
+sourceSets.main.java.srcDir(layout.buildDirectory.dir('generated/openapi/src/main/java'))
+
+tasks.named('openApiGenerate') {
+    // The contract is split in many files but the plugin only tracks the root one by default.
+    // Without this line, editing a schema or a path file would NOT regenerate the code.
+    inputs.dir("$projectDir/src/main/resources/openapi")
+}
+
+tasks.named('compileJava') {
+    dependsOn 'openApiGenerate'
+}

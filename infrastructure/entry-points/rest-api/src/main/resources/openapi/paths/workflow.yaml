@@ -1,0 +1,55 @@
+# Path item. Every operation here belongs to the tag it declares.
+parameters:
+  - $ref: ../parameters/WorkflowId.yaml
+get:
+  tags:
+    - Workflows
+  operationId: getWorkflow
+  summary: Get a workflow
+  responses:
+    '200':
+      description: The workflow
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/workflow/WorkflowResponse.yaml
+    '404':
+      $ref: ../responses/NotFound.yaml
+put:
+  tags:
+    - Workflows
+  operationId: updateWorkflow
+  summary: Redefine a DRAFT workflow
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/workflow/WorkflowRequest.yaml
+  responses:
+    '200':
+      description: Workflow updated
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/workflow/WorkflowResponse.yaml
+    '400':
+      $ref: ../responses/BadRequest.yaml
+    '404':
+      $ref: ../responses/NotFound.yaml
+    '409':
+      $ref: ../responses/Conflict.yaml
+    '422':
+      $ref: ../responses/Unprocessable.yaml
+delete:
+  tags:
+    - Workflows
+  operationId: deleteWorkflow
+  summary: Delete a DRAFT workflow
+  responses:
+    '204':
+      description: Workflow deleted
+    '404':
+      $ref: ../responses/NotFound.yaml
+    '409':
+      $ref: ../responses/Conflict.yaml

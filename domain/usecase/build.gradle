@@ -1,0 +1,10 @@
+description = 'Use cases: implementations of the input ports. Depends on the domain model and on Spring stereotypes only.'
+
+dependencies {
+    api project(':domain:model')
+
+    // Only for the @Service stereotype on the use cases; no web, no data, no JPA.
+    implementation 'org.springframework:spring-context'
+
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+}
