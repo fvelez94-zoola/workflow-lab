@@ -226,13 +226,10 @@ Generator (spec-first, interfaces and DTOs only), ArchUnit, JUnit 5 and Mockito.
 
 ### From IntelliJ IDEA
 
-Open the project folder and let IntelliJ import the Gradle build. The shared run configurations in
-[`.idea/runConfigurations`](.idea/runConfigurations) appear in the toolbar:
-
-| Configuration | What it does |
-|---|---|
-| **Workflow Lab** | Press **Play** (or Debug) to start the application: it runs `:applications:app-service:bootRun` |
-| **Build and test** | Runs `clean build`: compiles every module and runs the whole test suite |
+Open the project folder and let IntelliJ import the Gradle build. The shared run configuration
+[`Workflow Lab`](.idea/runConfigurations/Workflow_Lab.xml) is the only one in the project, so it is the one the
+toolbar offers: press **Play** (or Debug) to start the application. It runs `:applications:app-service:bootRun`.
+To build and run all the tests, use `./gradlew clean build` or the `build` task in the Gradle tool window.
 
 The Java 25 toolchain is resolved by Gradle: it uses a JDK 25 found on the machine (SDKMAN, Homebrew, ...) and
 downloads one automatically if none is available. IntelliJ itself only needs a JDK 17 or newer to run Gradle.

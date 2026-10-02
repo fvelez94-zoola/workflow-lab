@@ -56,8 +56,8 @@ workflows) is deliberately small: the architecture is the product, the business 
 
 H2 console: `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:mem:workflowlab`).
 
-IntelliJ IDEA: the shared run configurations in `.idea/runConfigurations` give a ready **Workflow Lab** (Play)
-and **Build and test**. They are the only part of `.idea/` that is committed.
+IntelliJ IDEA: the shared run configuration in `.idea/runConfigurations` gives a ready **Workflow Lab** (Play).
+It is the only part of `.idea/` that is committed.
 
 ### Module map
 
@@ -643,8 +643,10 @@ without having run it.
     ignored. Share a template (for example `.env.example`) instead of the real file.
 - **JDK**: the build needs Java 25 through a Gradle toolchain. `settings.gradle` applies the `foojay` resolver so
   Gradle downloads it when it is missing. Do not hard-code a JDK path in the build or in committed IDE files.
-- **Run configurations**: when a module path or the main task changes, update the files in
-  `.idea/runConfigurations` in the same change.
+- **Run configurations**: when a module path or the main task changes, update the file in
+  `.idea/runConfigurations` in the same change. Keep **exactly one** shared run configuration (the one that starts
+  the app): IntelliJ stores which configuration is selected in the local `workspace.xml`, which cannot be
+  shared, so with a single configuration there is nothing to choose and Play works on a fresh open.
 
 ---
 
@@ -753,7 +755,7 @@ Decisions already taken. Do not reverse them without an explicit decision, and r
 | 11 | **Documentation in English; diagrams as SVG in `docs/images`** | Audience and tooling (previews do not render Mermaid) | See section 10 |
 | 12 | **`shouldXYZ` test naming** | Tests read as specifications | Applies to every new or rewritten test |
 | 13 | **ArchUnit on top of the module structure** | Gradle only controls dependencies between whole modules; it cannot express rules about annotations, naming, packages inside a module, or "stereotypes only" (README, "Why ArchUnit?") | Rules live only in `ArchitectureTest`, are never weakened to get a green build, and each new rule must be proven to bite |
-| 14 | **Share only IntelliJ run configurations; Gradle resolves the JDK** | "Open and press Play" without committing files the IDE rewrites constantly; no machine-specific JDK paths in the repo | `.gitignore` allows only `.idea/runConfigurations/`; `settings.gradle` applies the `foojay` toolchain resolver |
+| 14 | **Share one IntelliJ run configuration (start the app); Gradle resolves the JDK** | "Open and press Play" without committing files the IDE rewrites constantly; no machine-specific JDK paths in the repo | `.gitignore` allows only `.idea/runConfigurations/`; `settings.gradle` applies the `foojay` toolchain resolver |
 
 ---
 
